@@ -1,0 +1,80 @@
+{% extends 'Main/base.html' %}
+
+
+
+
+{% block body %}
+
+{% if congratulation == 'congratulation' %}
+
+<h3 style="text-align: center">{{ congratulation }}</h3>
+
+ {% elif page == 'register' %}
+
+<h3>Sign Up Page</h3>
+<br
+<div> 
+      <form method="post">
+            {% csrf_token %}
+            
+            {{ form.as_p }}
+            
+            
+            <input type="submit" value="Register"/>
+      </form> 
+      <br>
+   <p>Already have a profile?</p>
+   <a href="{% url 'login' %}">Login</a>
+</div>
+
+{% else %}
+
+<form style = "float:left " method="GET" action="{% url 'search' %}">
+    <label>What are you looking for?</label> 
+    <input type="text" name='q' placeholder="Search Cars..." />
+</form>
+
+<div style=" text-align: right">
+    <a style="display:inline" href="{% url 'car_sale' %}">Car Sale</a>
+    <a style="text-align: right" href="{% url 'new_service' %}">New Service</a>
+    <a style="text-align: right" href="{% url 'new_auto_part' %}">Auto part</a>
+</div>
+
+<hr>
+
+
+<div class="home-container">
+    
+    <div>
+        
+        <h2>Cars on the Sale:</h2>
+        
+        {% for el in all_cars %}
+        <div class="alert alert-warning mt-2">
+            <p>Имя бренда: {{ el.Brand }}</p>
+            <p>Цена: {{ el.price }}</p>
+          
+            <a href="{% url 'details' el.id %}">Details</a>
+
+                <hr>
+            </div>
+            
+            {% endfor %}
+        </div>
+        
+    </div>
+    
+    
+    {% endif %}
+    
+  
+    
+{% endblock %}
+
+<!-- class="alert alert-warning mt-2" -->
+<!-- Машины с пробегом  -->
+<!-- Автосалоны  -->
+<!-- Магазин запчастей  -->
+<!-- Запчасти  -->
+<!--Ремонт  -->
+<!-- Услуги -->

@@ -1,0 +1,9 @@
+
+head, body{
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.home-container{
+    display: grid;
+    grid-template-columns: 1fr  3fr;   
+}

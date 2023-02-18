@@ -1,0 +1,26 @@
+{% extends 'Main/base.html' %}
+
+{% block head %}{% endblock %}
+
+{% block body %} 
+<form method="GET" action="{% url 'search' %}">
+    <label>What are you looking for?</label> 
+    <input type="text" name='q' placeholder="Search Cars..."/>
+</form>
+<hr>
+    <h4>{{car_count}} results has been found</h4>
+        {% for el in cars %}
+            <div  class="alert alert-warning mt-2">
+                <p>Имя Продавца: {{ el.user }}</p>
+                <p>Имя бренда: {{ el.Brand }}</p>
+                <p>Год выпуска: {{ el.year }}</p>
+                <p>Цена: {{ el.price }}</p>
+                {% if request.user == el.user %}
+                <a href="{% url 'update_car' el.id %}">Edit</a>
+                <a href="{% url 'delete_car' el.id %}">Delete</a>
+                {% endif %}
+                <hr>
+            </div>
+            {% endfor %}
+
+{% endblock %}

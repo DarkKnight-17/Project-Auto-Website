@@ -1,0 +1,42 @@
+{% extends 'Main/base.html' %}
+
+{% block head %}{% endblock %}
+
+
+{% block body %} 
+
+<h2>{{ car.Brand}}</h2>
+
+<div class="alert alert-warning mt-2">
+    <h5>Price: {{ car.price }} tg</h5>
+    <h5>Year: {{ car.year }}</h5>
+    <h5>Description: {{ car.description }}</h5>
+    <h5>City: {{ car.city}}</h5>
+    <h5>Seller: {{ car.user }}</h5>
+    <h5>Contact number: {{ car.contact_number }}</h5>
+    <h5>The link to the image: {{ car.picture }}</h5>
+    <h5>Announced: {{ car.created }}</h5>
+    <h5>Edited: {{ car.updated }}</h5>
+
+    
+    {% if request.user == car.user %}
+    
+    <a href="{% url 'update_car' car.id %}" class="btn btn-outline-primary"><b>Edit</b></a>
+    <a href="{% url 'delete_car' car.id %}" class="btn btn-outline-primary"><b>Delete</b></a>
+    {% endif %}
+    {% if fav %}
+  <div>
+
+    <a href = "{% url 'to_favourite' car.id %}" class="btn btn-outline-primary">
+      <b>Remove</b>
+    </a>
+  </div>
+  {% else %}
+  
+    <a href="{% url 'to_favourite' car.id %}" class="btn btn-outline-primary"><b>Add to Favourites</b></a>
+  {% endif %}  
+    
+    <hr>
+</div>
+
+{% endblock %} 

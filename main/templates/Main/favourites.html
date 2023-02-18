@@ -1,0 +1,26 @@
+{% extends 'Main/base.html' %}
+
+{% block head %}{% endblock %}
+
+{% block body %} 
+<div class="home-container">
+    
+    <div>
+        
+        <h2>My Favourites</h2>
+        
+        {% for el in all_cars %}
+        <div class="alert alert-warning mt-2">
+            <p>Имя бренда: {{ el.Brand }}</p>
+            <p>Цена: {{ el.price }}</p>
+          
+            <a href="{% url 'to_favourite' el.id %}"  class="btn btn-outline-primary">Remove</a>
+
+                <hr>
+            </div>
+            
+            {% endfor %}
+        </div>
+        
+    </div>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends 'Main/base.html' %}
+
+{% block head %}{% endblock %}
+
+{% block body %} 
+<h3>New Car Sale</h3>
+<form method="post">
+   {% csrf_token %}
+   {{form.as_p}}
+   <button type="submit">Announce</button>
+   
+</form> 
+{% endblock %}
